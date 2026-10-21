@@ -2,10 +2,15 @@ name: checker
 on: push
 
 jobs:
-  lint:
+  first-commands:
     runs-on: ubuntu-latest
     steps:
       - name: checker
-        run: docker ps -a
-      - name:
-        
+        run: echo gg wp
+    
+  second-commands:
+    runs-on: ubuntu-latest
+    needs: first-commands
+    steps:
+      - name: checker2
+        run: echo init succesfully
