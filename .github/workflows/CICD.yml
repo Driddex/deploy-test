@@ -2,15 +2,9 @@ name: checker
 on: push
 
 jobs:
-  first-commands:
+  code_checker:
     runs-on: ubuntu-latest
     steps:
-      - name: checker
-        run: echo gg wp
-    
-  second-commands:
-    runs-on: ubuntu-latest
-    needs: first-commands
-    steps:
-      - name: checker2
-        run: echo init succesfully
+      - name: get code
+        run: echo succesfully got a code
+      - uses: actions/checkout@4
