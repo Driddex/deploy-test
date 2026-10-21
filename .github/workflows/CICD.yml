@@ -1,0 +1,11 @@
+name: checker
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checker
+        run: docker ps -a
+      - name:
+        
