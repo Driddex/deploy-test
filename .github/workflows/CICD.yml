@@ -7,4 +7,4 @@ jobs:
     steps:
       - name: get code
         run: echo succesfully got a code
-      - uses: actions/checkout@4
+      - uses: actions/checkout@v4
