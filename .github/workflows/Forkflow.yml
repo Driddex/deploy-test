@@ -1,0 +1,13 @@
+name: Forkflow
+on: 
+  workflow_run:
+    workflows: [checker]
+    types:
+      - completed
+
+jobs:
+  hellocmd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say
+        run: echo finished got forkflow finished
