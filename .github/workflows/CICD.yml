@@ -7,13 +7,7 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
-      - run: echo succesfully got a code
 
-      - name: Copy files
-        run: |
-          git init
-          git remote add origin "https://github.com/Driddex/deploy-test.git"
-          git fetch origin main
-          git checkout main
-          echo succesfully remoted with git
+      - name: confirm
+        run: echo succesfully confirmed
         
