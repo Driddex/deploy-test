@@ -16,5 +16,6 @@ jobs:
           python-version: "3.11"
       - name: check server
         run: python compileall api/
+      - run: echo succesfully checked a code
 
         
