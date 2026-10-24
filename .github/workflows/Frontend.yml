@@ -1,3 +1,4 @@
+
 name: frontend
 on:
   push:
@@ -5,14 +6,17 @@ on:
       - "frontend/javascript/frontend.js"
 
 jobs:
-  comlileall:
+  check-syntax:
     runs-on: ubuntu-latest
     steps:
-      - name: get code
+      - name: Get code
         uses: actions/checkout@v4
-      - name: install node
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: compileall
-        run: node -c frontend/javascript/frontend.js
+          cache: 'npm'
+      - name: Install dependencies
+        run: cd frontend/javascript && npm ci
+      - name: Check syntax by running
+        run: cd frontend/javascript && node frontend.js
