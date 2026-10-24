@@ -4,6 +4,8 @@ on:
     workflows: [checker]
     types:
       - completed
+  issues:
+    types: [edited,deleted]
 
 jobs:
   hellocmd:
@@ -18,3 +20,9 @@ jobs:
     steps:
       - name: failure
         run: echo failed
+  
+  issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: issues
+        uses: actions/checkout@v4

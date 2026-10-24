@@ -7,6 +7,7 @@ DATA_BASE_URI = "postgresql://postgres:0208_password@127.0.0.1:8120/news_db"
 
 engine = create_engine(DATA_BASE_URI)
 session = sessionmaker(autoflush=False,autocommit=False,bind=engine)
+
 base = declarative_base()
 
 class c_users(base):
@@ -57,4 +58,4 @@ async def delete(data: checker,db: Session = Depends(get_db)):
 
         return {"status": "success"}
     else:
-        return {"status" : f"user with name: {name} not found"}
+        return {"status" : f"user with name: {name} not found."}

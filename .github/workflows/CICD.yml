@@ -1,5 +1,8 @@
 name: checker
-on: push
+on: 
+  push:
+    paths:
+      - "api/api.py"
 
 jobs:
   code_checker:
@@ -7,7 +10,7 @@ jobs:
     steps:
       - name: get code
         uses: actions/checkout@v4
+      - name: check server api
+        uses: actions/setup-python@v5
 
-      - name: confirm
-        run: echo succesfully confirmed
         
