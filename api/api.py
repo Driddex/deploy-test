@@ -58,4 +58,4 @@ async def delete(data: checker,db: Session = Depends(get_db)):
 
         return {"status": "success"}
     else:
-        return {"status" : f"user with name: {name} not found."}
+        return {"status" : f"user with name: {name} not found"}
