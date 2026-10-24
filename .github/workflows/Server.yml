@@ -1,0 +1,21 @@
+name: checker
+on: 
+  push:
+    paths:
+      - "api/api.py"
+
+jobs:
+  code_checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: check server api
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: check server
+        run: python -m compileall api/
+      - run: echo succesfully checked a code
+
+        

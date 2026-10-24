@@ -1,0 +1,18 @@
+name: frontend
+on:
+  push:
+    paths:
+      - "frontend/javascript/frontend.js"
+
+jobs:
+  comlileall:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: compileall
+        run: node -c frontend/javascript/frontend.js
