@@ -7,6 +7,10 @@ on:
         description: Write a reason
         type: string
         default: Test
+  
+  push:
+    paths:
+      - "api/api.py"
 
 jobs:
   runTest:
@@ -23,7 +27,15 @@ jobs:
     if: ${{ inputs.Information == 'Checker'}}
     steps:
       - name: Checker
-        run: echo Test
-
+        run: echo Starting a server check for code errors
+        
+      - name: dowload a code
+        uses: actions/checkout@v4
+      - name: dowload python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: check for errors
+        run: python -m compileall api/
     
           
