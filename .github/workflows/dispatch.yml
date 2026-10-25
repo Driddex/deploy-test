@@ -1,6 +1,17 @@
-name: distpach
+name: dispatch
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      titleCustom: 
+        description: Type the title
+        type: string
+        required: true
+        default: hello
+      title2:
+        description: hello world
+        required: false
+        default: test
+        type: string
 
 jobs:
   run:
