@@ -7,12 +7,28 @@ on:
         description: Write a reason
         type: string
         default: Test
+      Choicer:
+        required: false
+        description: test
+        type: choice
+        options:
+          - Hi
+          - Bye
+        default: "Hi"
+        
   
   push:
     paths:
       - "api/api.py"
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.Choicer == 'Hi' }}
+    steps:
+      - name: success
+        run: echo GGWP
+
   runTest:
     runs-on: ubuntu-latest
     if: ${{ inputs.Information == 'Test'}}
@@ -28,8 +44,8 @@ jobs:
     steps:
       - name: Checker
         run: echo Starting a server check for code errors
-        
-      - name: dowload a code
+
+      - name: dowload a repository
         uses: actions/checkout@v4
       - name: dowload python
         uses: actions/setup-python@v5
