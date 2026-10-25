@@ -9,11 +9,21 @@ on:
         default: Test
 
 jobs:
-  run:
+  runTest:
     runs-on: ubuntu-latest
+    if: ${{ inputs.Information == 'Test'}}
     steps:
       - name: success
         run: |
           echo "Title: ${{ inputs.Information }}"
           echo Succesfully runned a workflow dispatch
+
+  runChecker:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.Information == 'Test'}}
+    steps:
+      - name: Checker
+        run: echo Test
+
+    
           
