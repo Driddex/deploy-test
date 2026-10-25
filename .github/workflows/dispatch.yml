@@ -2,16 +2,11 @@ name: dispatch
 on:
   workflow_dispatch:
     inputs:
-      titleCustom: 
-        description: Type the title
-        type: string
+      Information:
         required: true
-        default: hello
-      title2:
-        description: hello world
-        required: false
-        default: test
+        description: Write a reason
         type: string
+        default: Test
 
 jobs:
   run:
@@ -19,5 +14,6 @@ jobs:
     steps:
       - name: success
         run: |
-          echo "Title: ${{ inputs.titleCustom }}"
-          echo "Second Title: ${{inputs.title2}}"
+          echo "Title: ${{ inputs.Information }}"
+          echo Succesfully runned a workflow dispatch
+          
