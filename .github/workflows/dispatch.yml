@@ -20,7 +20,7 @@ jobs:
 
   runChecker:
     runs-on: ubuntu-latest
-    if: ${{ inputs.Information == 'Test'}}
+    if: ${{ inputs.Information == 'Checker'}}
     steps:
       - name: Checker
         run: echo Test
