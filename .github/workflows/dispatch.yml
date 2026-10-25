@@ -15,7 +15,11 @@ on:
           - Hi
           - Bye
         default: "Hi"
-        
+      boolean:
+        type: boolean
+        description: GG WP?
+        required: false
+        default: false
   
   push:
     paths:
@@ -47,10 +51,12 @@ jobs:
 
       - name: dowload a repository
         uses: actions/checkout@v4
+
       - name: dowload python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          
       - name: check for errors
         run: python -m compileall api/
     
