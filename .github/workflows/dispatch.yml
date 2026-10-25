@@ -4,7 +4,7 @@ on:
     inputs:
       Information:
         required: true
-        description: Write a reason
+        description: Check Client/Server?
         type: string
         default: Test
       Choicer:
@@ -26,38 +26,20 @@ on:
       - "api/api.py"
 
 jobs:
-  test:
+  CodeChecker:
+    if: ${{ inputs.Information == 'Server'}}
     runs-on: ubuntu-latest
-    if: ${{ inputs.Choicer == 'Hi' }}
     steps:
-      - name: success
-        run: echo GGWP
-
-  runTest:
-    runs-on: ubuntu-latest
-    if: ${{ inputs.Information == 'Test'}}
-    steps:
-      - name: success
-        run: |
-          echo "Title: ${{ inputs.Information }}"
-          echo Succesfully runned a workflow dispatch
-
-  runChecker:
-    runs-on: ubuntu-latest
-    if: ${{ inputs.Information == 'Checker'}}
-    steps:
-      - name: Checker
-        run: echo Starting a server check for code errors
-
-      - name: dowload a repository
+      - name: Repository Dowload
         uses: actions/checkout@v4
-
-      - name: dowload python
+      
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          
+        
       - name: check for errors
         run: python -m compileall api/
     
+          
           
