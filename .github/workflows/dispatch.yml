@@ -18,4 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: success
-        run: echo succesfully booted
+        run: |
+          echo "Title: ${{ inputs.titleCustom }}"
+          echo "Second Title: ${{inputs.title2}}"
