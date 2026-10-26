@@ -1,6 +1,9 @@
 name: ss
+
 env:
   CHECKER: '${{ github.repository_owner }}'
+  Numb: 1
+  Numb2: 1
 
 on:
   workflow_dispatch:
@@ -19,3 +22,4 @@ jobs:
         id: context
         run: |
           echo '${{ env.CHECKER }}'
+          echo '${{ env.Numb }}' + '${{ env.Numb2 }}'
