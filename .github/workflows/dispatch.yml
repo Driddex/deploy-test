@@ -9,12 +9,12 @@ on:
         default: Test
       Choicer:
         required: false
-        description: test
+        description: choice
         type: choice
         options:
-          - Hi
-          - Bye
-        default: "Hi"
+          - ggwp
+          - ez ez
+        default: "ggwp"
       boolean:
         type: boolean
         description: GG WP?

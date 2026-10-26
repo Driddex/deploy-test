@@ -1,0 +1,19 @@
+name: ss
+on:
+  workflow_dispatch:
+    inputs:
+      Check:
+        type: boolean
+        default: true
+        description: print repository owner username
+        required: false
+
+jobs:
+  ss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ggwp
+        id: context
+        run: |
+          echo '${{ runner.os }}''
+          echo '${{ github.repository_owner }}'
