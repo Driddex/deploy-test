@@ -1,0 +1,30 @@
+name: Server Checker
+
+on:
+  workflow_dispatch:
+    inputs:
+      ServerOrClient:
+        required: true
+        description: Server Or Client
+        type: choice
+        options:
+          - Server
+          - Client
+        default: "Server"
+
+jobs:
+  Server:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.ServerOrClient == 'Server' }}
+    steps:
+      - name: dowload repository
+        uses: actions/checkout@v4
+        
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: run compileall
+        run: python -m compileall api/
+        

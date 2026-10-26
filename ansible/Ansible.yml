@@ -1,0 +1,9 @@
+# - name: Installer
+#   hosts: webserver
+#   become: true
+
+#   tasks:
+#     - name: nginx installer
+#       apt:
+#         name: nginx
+#         state: present
