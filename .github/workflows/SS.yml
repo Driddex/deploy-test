@@ -15,5 +15,5 @@ jobs:
       - name: ggwp
         id: context
         run: |
-          echo '${{ runner.os }}''
+          echo '${{ runner.os }}'
           echo '${{ github.repository_owner }}'
