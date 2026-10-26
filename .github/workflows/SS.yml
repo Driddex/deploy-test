@@ -1,11 +1,14 @@
 name: ss
+env:
+  CHECKER: '${{ github.repository_owner }}'
+
 on:
   workflow_dispatch:
     inputs:
-      Check:
+      OwnerOutputer:
         type: boolean
         default: true
-        description: print repository owner username
+        description: Print repository owner username
         required: false
 
 jobs:
@@ -15,5 +18,4 @@ jobs:
       - name: ggwp
         id: context
         run: |
-          echo '${{ runner.os }}'
-          echo '${{ github.repository_owner }}'
+          echo '${{ env.CHECKER }}'
