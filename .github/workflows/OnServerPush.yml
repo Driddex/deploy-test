@@ -5,11 +5,12 @@ on:
     inputs:
       ServerOrClient:
         required: true
-        description: Server Or Client
+        description: Server/Client/Output
         type: choice
         options:
           - Server
           - Client
+          - Output
         default: "Server"
   push:
     paths:
@@ -44,6 +45,23 @@ jobs:
         run: |
           echo succesfully compilealled api/
           echo for: ${{ github.repository_owner }} repository
+      
+      - name: Compose Docker
+        run: |
+          docker compose up -d --build
+        
+      - name: chmod x
+        run: chmod +x api/bashCmds/ServerTester.sh
+
+      - name: check server is alive
+        if: ${{ always() }}
+        run: api/bashCmds/ServerTester.sh
+      
+      - name: Docker Compose down
+        if: ${{ always() }}
+        run: |
+          docker compose down
+          echo succesfully turned off docker compose
 
   Client:
     runs-on: ubuntu-latest
@@ -51,3 +69,17 @@ jobs:
     steps:
       - name: Dowload repository
         uses: actions/checkout@v4
+  Rep:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.ServerOrClient == 'OutPut-R-info' }}
+    steps:
+      - name: output info
+        run: |
+          echo Repository: ${{ github.repository }}
+          echo Owner name: ${{ github.repository_owner }}
+          echo Owner id: ${{ github.repository_owner_id }}
+          echo Link: ${{ github.repositoryUrl }}
+      - name: if error
+        if: ${{ failure() }}
+        run: echo failed to give repository information
+
