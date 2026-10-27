@@ -11,20 +11,43 @@ on:
           - Server
           - Client
         default: "Server"
+  push:
+    paths:
+      - 'api/api.py'
+      - 'frontend/javascript/frontend.js'
 
 jobs:
   Server:
     runs-on: ubuntu-latest
-    if: ${{ inputs.ServerOrClient == 'Server' }}
+    if: ${{ inputs.ServerOrClient == 'Server' || github.event_name == 'push'}}
     steps:
       - name: dowload repository
         uses: actions/checkout@v4
-        
+
       - name: setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5 
         with:
           python-version: "3.11"
 
+      - name: If Error
+        if: ${{ failure() }}
+        run: echo error
+
       - name: run compileall
         run: python -m compileall api/
-        
+      
+      - name: If error
+        if: ${{ failure() }}
+        run: echo Error failed to compileall server
+    
+      - name: print
+        run: |
+          echo succesfully compilealled api/
+          echo for: ${{ github.repository_owner }} repository
+
+  Client:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.ServerOrClient == 'Client' || github.event_name == 'push'}}
+    steps:
+      - name: Dowload repository
+        uses: actions/checkout@v4
