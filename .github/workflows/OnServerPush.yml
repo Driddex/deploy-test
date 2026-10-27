@@ -71,7 +71,7 @@ jobs:
         uses: actions/checkout@v4
   Rep:
     runs-on: ubuntu-latest
-    if: ${{ inputs.ServerOrClient == 'OutPut-R-info' }}
+    if: ${{ inputs.ServerOrClient == 'Output' }}
     steps:
       - name: output info
         run: |
