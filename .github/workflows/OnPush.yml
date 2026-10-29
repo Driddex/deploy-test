@@ -1,0 +1,36 @@
+name: On push/Disptatch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get repository
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: compileall
+        run: python -m compileall api/
+      
+      - name: ch
+        if: ${{ success() }}
+        run: echo succesfully compilealled starint the docker test
+      
+      - name: boot the docker
+        run: docker compose up -d --build
+      
+      - name: check the curl
+        run: ./api/Curl.sh
+
+      - name: docker compose down
+        if: ${{ always() }}
+        run: |
+          docker compose down
+          echo succesfully puted a docker compose down
