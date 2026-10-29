@@ -13,6 +13,7 @@ base = declarative_base()
 
 class cc_users(base):
     __tablename__ = "users"
+    
     id = Column(Integer, primary_key=True, nullable=False)
 
 base.metadata.create_all(bind=engine)
@@ -42,6 +43,10 @@ async def post(data: checker, db: Session = Depends(get_db)):
         db.add(create_user)
         db.commit()
         return {'status': 'created'}
+
+@app.get('/g')
+async def get_checkerVersion():
+    return {"status": "succesfully got a your fetch request!"}
 
 @app.delete('/d')
 async def delete(data: checker, db: Session = Depends(get_db)):
